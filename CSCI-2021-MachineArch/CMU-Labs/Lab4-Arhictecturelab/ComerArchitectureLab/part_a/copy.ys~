@@ -1,0 +1,55 @@
+# Nathan Comer
+# ID: 5119060
+
+.pos 0 
+init:	irmovq Stack, %rsp
+	rrmovq %rsp, %rbp 
+	call main
+	halt 
+ 
+    	.align 8 
+# Source block 
+src: 
+	    .quad 0x00a 
+	    .quad 0x0b0 
+	    .quad 0xc00 
+
+# Destination block 
+dest: 
+	    .quad 0x111 
+	    .quad 0x222 
+	    .quad 0x333 
+ 
+main:	irmovq src,%rdi 	#set 1st argument (%rdi) to src
+	irmovq dest,%rsi 	#set 2nd argument (%rsi) to dest
+	irmovq $3,%rdx 		#set 3rd argument (%rdx) to len
+    	call copy_block
+    	ret 
+ 
+copy_block:	
+	pushq %rbp 		#save register
+	pushq %rbx
+    	rrmovq %rsp,%rbp 
+    	irmovq $0,%rax		#set register rax to 0 (Will be used to Xor words together)
+    	andq %rdx,%rdx 
+    	je End 
+Loop:	mrmovq (%rdi),%rbx	#get the first value
+	rmmovq %rbx,(%rsi)	#move it to the new memory location
+    	xorq %rbx,%rax		#Xor the word to rax
+    	irmovq $0x8,%rcx	#use rcx to increment source and dst addresses
+    	addq %rcx, %rdi		#src++ 
+    	addq %rcx, %rsi	    	#dest++
+    	irmovq $-1,%rcx	      	#set rcx to -1
+    	addq %rcx,%rdx        	#use rcx to decrease len by 1
+    	jg    Loop           	#continue the Loop as long as len > 0
+ 
+	
+End:	rrmovq %rbp, %rsp
+	popq %rbx
+	popq %rbp 		#restore register
+	ret 	
+
+	.pos 0x200 
+Stack: 
+
+

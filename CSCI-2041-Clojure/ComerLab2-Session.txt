@@ -1,0 +1,47 @@
+Script started on Tue Jan 26 16:33:34 2016
+comer028@csel-vole-04:~$ clojure
+[KClojure 1.4.0
+[Kuser=> [Kuser=> [Kuser=> (ns user(:import java.lang.Math)user=> (ns user(:import java.lang.Math))user=> (ns user(:import java.lang.Math))user=> [K[K([K(ns user(:import java.lang.Math))
+[K(defn prime? ([n][n] (cond (< n 3)(< n 3) true :else (prime? n 2)(prime? n 2))(defn prime? ([n] (cond (< n 3) true :else (prime? n 2)))(defn prime? ([n] (cond (< n 3) true :else (prime? n 2)))[K[K [K(defn prime? ([n] (cond (< n 3) true :else (prime? n 2)))
+[K    ([n y][n y][K[K [K    ([n y]
+[K      (cond [K[K [K      (cond 
+[K        (= (mod n y)(mod n y) 0)        (= (mod n y) 0) false[K[K [K        (= (mod n y) 0) false
+[K        (>= y (Math/sqrt n)(Math/sqrt n))        (>= y (Math/sqrt n)) true[K[K [K        (>= y (Math/sqrt n)) true
+[K        :else (prime? n (+ y 1)(+ y 1))        :else (prime? n (+ y 1)))))[K[K [K        :else (prime? n (+ y 1)))))
+[K  [K[K([K  
+[K(defn sum-primes ([a b][a b] (sum-primes a b 0)(sum-primes a b 0))(defn sum-primes ([a b] (sum-primes a b 0))[K[K [K(defn sum-primes ([a b] (sum-primes a b 0))
+[K  ([a b t]  ([a b t][K[K [K  ([a b t]
+[K    (cond[K[K [K    (cond
+[K      (> a b)(> a b) t[K[K [K      (> a b) t
+[K      (prime? a)      (prime? a) (sum-primes (+ a 1)(+ a 1) b (+ t a)(+ t a))      (prime? a) (sum-primes (+ a 1) b (+ t a))[K[K [K      (prime? a) (sum-primes (+ a 1) b (+ t a))
+[K      (not (prime? a)(prime? a))      (not (prime? a)) (sum-primes (+ a 1)(+ a 1) b t)(sum-primes (+ a 1) b t))))[K[K [K      (not (prime? a)) (sum-primes (+ a 1) b t))))
+[K      [K[K      
+[K([K
+[K(defn sum-even ([a b][a b] (sum-even a b 0)(sum-even a b 0))(defn sum-even ([a b] (sum-even a b 0))[K[K [K(defn sum-even ([a b] (sum-even a b 0))
+[K  ([a b t]  ([a b t][K[K [K  ([a b t]
+[K   (cond[K[K [K   (cond
+[K     (> a b)     (> a b) t[K[K [K     (> a b) t
+[K     (even? a)     (even? a) (sum-even (+ a 1)(+ a 1) b (+ t a)(+ t a))     (even? a) (sum-even (+ a 1) b (+ t a))[K[K [K     (even? a) (sum-even (+ a 1) b (+ t a))
+[K [Kjava.lang.Math
+user=> [Kuser=>      (odd? a)(odd? a) (sum-even (+ a 1)(+ a 1) b t)(sum-even (+ a 1) b t))))user=> [K[Kuser=> #'user/prime?[Kuser=> #'user/prime?     (odd? a) (sum-even (+ a 1) b t))))user=> #'user/prime?[K[Kuser=> #'user/prime?
+user=> user=> [Kuser=> user=>      (odd? a) (sum-even (+ a 1) b t))))user=> user=> [K[Kuser=> user=> #'user/sum-primes[Kuser=> user=> #'user/sum-primes     (odd? a) (sum-even (+ a 1) b t))))user=> user=> #'user/sum-primes[K[Kuser=> user=> #'user/sum-primes
+user=> [Kuser=>      (odd? a) (sum-even (+ a 1) b t))))user=> [K[Kuser=> user=> user=> [Kuser=> user=> user=>      (odd? a) (sum-even (+ a 1) b t))))user=> user=> user=> [K     (odd? a) (sum-even (+ a 1) b t))))
+#'user/sum-even
+user=> [Kuser=> [Kuser=> (prime? 7)user=> (prime? 7)user=> [K(prime? 7)
+true
+user=> [Kuser=> [Kuser=> (prime? 27)user=> (prime? 27)user=> [K(prime? 27)
+false
+user=> [Kuser=> [Kuser=> (sum-primes 2 10)user=> (sum-primes 2 10)user=> [K(sum-primes 2 10)
+17
+user=> [Kuser=> [Kuser=> (sum-primes 2 7)user=> (sum-primes 2 7)user=> [K(sum-primes 2 7)
+17
+user=> [Kuser=> [Kuser=> (sum-primes 7 8)user=> (sum-primes 7 8)user=> [K(sum-primes 7 8)
+7
+user=> [Kuser=> [Kuser=> (sum-even 2 10)user=> (sum-even 2 10)user=> [K(sum-even 2 10)
+30
+user=> [Kuser=> [Kuser=> (sum-even 2 4)user=> (sum-even 2 4)user=> [K(sum-even 2 4)
+6
+user=> [Kuser=> [Kuser=> 
+[Kcomer028@csel-vole-04:~$ exit
+
+Script done on Tue Jan 26 16:35:51 2016

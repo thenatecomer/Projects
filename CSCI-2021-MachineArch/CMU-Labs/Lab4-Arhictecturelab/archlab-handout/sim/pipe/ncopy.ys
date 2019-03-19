@@ -1,0 +1,111 @@
+#/* $begin ncopy-ys */
+##################################################################
+# ncopy.ys - Copy a src block of len words to dst.
+# Return the number of positive words (>0) contained in src.
+#
+# Nathan Comer
+# ID: 5119060
+# Utilized loop unrolling (LoopA) to calculate and move 4 elements
+# at once. After the numbers of elemenets remaining is < 4 LoopB is
+# used to finish the remaining elements. Also removed the counter
+# for negative numbers and instead calculated the number of negative
+# numbers at the end. Used the iaddq instruction to reduce the number
+# of instructions. Lastly removed data dependencies and other delays
+# to increase the code's efficiency. 
+#
+##################################################################
+# Do not modify this portion
+# Function prologue.
+# %rdi = src, %rsi = dst, %rdx = len
+ncopy:
+
+##################################################################
+# You can modify this portion
+	# Loop header
+	rrmovq %rdx, %r10
+	andq %rdx,%rdx		# len <= 0?
+	jle Done		# if so, goto Done:
+	xorq %rax,%rax		# count = 0;
+	xorq %rcx,%rcx		# count = 0;
+	rrmovq %rdx, %rbx	# move len to rbx so we can calculate the number of negatives later
+	iaddq $-4, %r10		# if len < 4 go to LoopB
+	jle LoopB	
+
+LoopA:	mrmovq (%rdi), %r10	# Read all 4 values
+	mrmovq 0x8(%rdi), %r11
+	mrmovq 0x10(%rdi), %r12  
+	mrmovq 0x18(%rdi), %r13
+	rmmovq %r10, (%rsi)	# Move all 4 values	
+	rmmovq %r11, 0x8(%rsi)	
+	rmmovq %r12, 0x10(%rsi)	
+	rmmovq %r13, 0x18(%rsi)	 
+
+	iaddq $-4, %rdx		# len--	   
+	iaddq $0x20, %rdi	# src++	   
+	iaddq $0x20, %rsi	# dst++    
+				
+				# The next 4 blocks of code increment the appropriate counters
+				# for each value
+	
+	andq %r10, %r10		
+	jl PosA			# if val #1 < 0 skip to next value
+	jne ZeroA		
+	iaddq $1, %rcx		# if value #1 = 0 increment rcx
+	jmp PosA
+ZeroA:	iaddq $1, %rax		# if value #1 > 0 increment rax
+
+PosA:	andq %r11, %r11		# val #2
+	jl PosB
+	jne ZeroB
+	iaddq $1, %rcx
+	jmp PosB
+ZeroB:	iaddq $1, %rax
+
+PosB:	andq %r12, %r12		# val #3
+	jl PosC
+	jne ZeroC
+	iaddq $1, %rcx
+	jmp PosC
+ZeroC:	iaddq $1, %rax
+
+PosC:	andq %r13, %r13		# val #4
+	jl PosD
+	jne ZeroD
+	iaddq $1, %rcx
+	jmp PosD
+ZeroD:	iaddq $1, %rax
+
+PosD:	rrmovq %rdx, %r10
+	iaddq $-3, %r10
+	andq %r10, %r10
+	jg LoopA		# if len > 3 go to LoopA
+	andq %rdx, %rdx	
+	jle End			# if len <= 0 go to End
+
+LoopB:	mrmovq (%rdi), %r10	# read val from src...
+	iaddq $8, %rsi		# dst++
+	iaddq $-1, %rdx		# len--	
+	iaddq $8, %rdi		# src++
+	rmmovq %r10, -8(%rsi)	# ...and store it to dst
+	andq %r10, %r10		# val <= 0?
+	jle temp		# if so, goto temp: 
+	iaddq $1, %rax		# Count positives in rax - count_pos++
+temp:	andq %r10, %r10		# 
+	jne Rest		# if val = 0 count_zero++
+	iaddq $1, %rcx
+Rest:	andq %rdx,%rdx		# len > 0?
+	jg LoopB		# if so, goto LoopB:
+
+End:	subq %rax, %rbx		# Calculate number of negatives:
+	subq %rcx, %rbx		# (len - number of positives - number of zeros)
+	
+
+##################################################################
+# Do not modify the following section of code
+# Function epilogue.
+Done:
+	ret
+##################################################################
+# Keep the following label at the end of your function
+End:
+#/* $end ncopy-ys */

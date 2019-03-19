@@ -1,0 +1,56 @@
+Nathan Comer
+CSCI 4511W
+Written Assignment 1
+
+1.
+a) b^(d-1)+1
+b) The minimum number of nodes you would need to explore to find a solution would be d, the depth of the search tree, which would be the case when you happen to correctly choose the number for each square on the first attempt. The maximum number of nodes you would need to explore to find a solution would be b^(d-1)+1 which would be the case when the correct number for each square is the last one attempted thus the algorithm will have visited every node in the tree.
+c) The depth of the search tree can be reduced by p (the number of pre-filled squares) because obviously a square doesn't need to be included in the search tree if it's already filled.
+   d(pruning) = d - p		
+
+   The branching factor of an individual node can be reduced by the number of unique values already filled in its respective row + column + region because if a value is already present in a square's row, column or region it cannot be a legal value for that square. 
+   b(pruning) = b - |{row values}U{col values}U{region values}|
+
+2.
+a) 3^n
+   There would be n disks such that each disk can be placed in three different positions.
+b) Iterative-DFS is a viable approach because it will still visit every node in a breadth first manner but will save space over BFS. Iterative-DFS uses less space in memory then BFS and uses less time than DFS.
+c) BFS:
+    Time: O(b^(d+1))
+    Space: O(b^(d+1))
+    Iterative-DFS:
+    Time: O(b^d)
+    Space: O(d)
+    Bidirectional Search:
+    Time: O(b^(d/2))
+    Space: O(b^(d/2))
+
+    The optimal solution can be found in 2^n - 1 moves because using the relation f(n) = 2*f(n-1)+1 and induction:
+	For n = 1: 1 = 2^1 - 1 = 1
+	Assume true for n = k. For n = k + 1:
+	f(k+1) = 2*f(k) + 1
+	f(k+1) = 2*(2^k - 1) + 1
+	f(k+1) = 2^(k+1) - 1
+    Thus by induction the optimal solution can be found in 2^n - 1 moves.
+	
+3.
+a) Assuming that heuristic is evaluated when the lantern is on the starting side of the bridge, and that the fastest person on the opposite side is always chosen to return the lantern to the start.
+
+	So we want a heuristic h(n) that decreases as the number of people we get across increases while trying to do so in as little time as possible.
+  
+	h(n) = time spent / 2 * (summation of the crossing times (ie 1,2,5,8) for the people who are already acrossed)
+	except at time = 0 let h(n) = 15.
+	
+	
+b) Example 1: A&B cross, then A returns.
+	
+	Person B across bridge, A, C and D still need to cross
+	f(n) = g(n) + h(n) = 3 + 3/4 = 3.75
+
+   Example 2: A&B cross, then A returns. C&D cross, then B returns.
+
+	Person C and D across bridge, A and B still need to cross
+	f(n) = g(n) + h(n) = 13 + 13/26 = 13.5
+
+
+

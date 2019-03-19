@@ -1,0 +1,156 @@
+# Initial code
+        irmovq stack,%rsp
+        irmovq $5,%rdi
+        irmovq A,%rsi
+        irmovq B,%rdx
+        irmovq C,%rcx
+        call matrix_and_xor
+        halt
+
+.align 8
+# Matrix A
+A:
+        .quad 0x001
+        .quad 0x002
+        .quad 0x003
+        .quad 0x004
+        .quad 0x005
+        .quad 0x006
+        .quad 0x007
+        .quad 0x008
+        .quad 0x009
+        .quad 0x001
+        .quad 0x002
+        .quad 0x003
+        .quad 0x004
+        .quad 0x005
+        .quad 0x006
+        .quad 0x007
+        .quad 0x008
+        .quad 0x009
+        .quad 0x001
+        .quad 0x002
+        .quad 0x003
+        .quad 0x004
+        .quad 0x005
+        .quad 0x006
+        .quad 0x007
+
+# Matrix B 
+B:
+        .quad 0x001
+        .quad 0x002
+        .quad 0x003
+        .quad 0x004
+        .quad 0x005
+        .quad 0x006
+        .quad 0x007
+        .quad 0x008
+        .quad 0x009
+        .quad 0x001
+        .quad 0x002
+        .quad 0x003
+        .quad 0x004
+        .quad 0x005
+        .quad 0x006
+        .quad 0x007
+        .quad 0x008
+        .quad 0x009
+        .quad 0x007
+        .quad 0x006
+        .quad 0x005
+        .quad 0x004
+        .quad 0x003
+        .quad 0x002
+        .quad 0x001
+
+# Matrix C 
+C:
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+        .quad 0x000
+
+
+
+matrix_and_xor:
+##############################################################
+##############################################################
+#### Enter your code here ####################################
+#### Please do not add anything above matrix_and_xor label ###
+#### Add only the function body ##############################
+#### Script assumes that size is in %rdi, A is in %rsi #######
+#### B is in %rdx, C is in %rcx ##############################
+#### Also, don't forget to add ret in end. ###################
+#### Don't add enything below ret. ###########################
+##############################################################
+############################################################## 
+
+
+/* Version B */
+
+	xorq %rax, %rax		#set return value to zero
+	xorq %r8, %r8 		#set r8 (Y count) to zero
+	xorq %r9, %r9		#set r9 (address incrementer) to zero
+LoopY:	irmovq $0x1, %rbx
+	addq %rbx, %r8		#Y count++
+
+	xorq %r10, %r10		#set r10 (X count) to zero
+LoopX:	irmovq $0x1, %rbx	
+	addq %rbx, %r10		#X count++
+	
+	
+	rrmovq %rsi, %r11	#get starting address for matrix A (%rsi)
+	addq %r9, %r11		#add current offset to the starting address
+	mrmovq (%r11), %r11	#get the value from address
+	
+	rrmovq %rdx, %r12	#get starting address for matrix B (%rdx)
+	addq %r9, %r12		#add current offset to the starting address
+	mrmovq (%r12), %r12	#get the value from address
+	
+	rrmovq %rcx, %r13	#get starting address for matrix C (%rcx)
+	addq %r9, %r13		#add current offset to the starting address
+
+	andq %r11, %r12		#AND the corresponding elements from matrices A and B
+	rmmovq %r12, (%r13)	#move the value into matrix C
+
+	xorq %r12, %rax		#Xor the elements of matrix C together
+	
+	irmovq $0x8, %rbx
+	addq %rbx, %r9		#increment address
+
+	rrmovq %r10, %r14	#Use %r14 as a temporary value
+	subq %rdi, %r14 	#Check to see if X count < size 
+	jl LoopX		#Jump to LoopX as long as X < size
+
+	rrmovq %r8, %r14	#Use %r14 as a temporary value
+	subq %rdi, %r14		#Check to see if Y count < size
+	jl LoopY		#Jump to LoopY as long as Y < size
+
+End:	ret
+
+
+	.pos 0x800
+stack:
+

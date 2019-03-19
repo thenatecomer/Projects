@@ -1,0 +1,30 @@
+user=> 
+(def a 4)
+#'user/a
+user=> 
+(+ (cond (and (odd? a) (> a 3)) a
+                (< a 2) (* 10 a)
+                :else (* a a))   a) 
+
+20
+user=> user=> 
+user=> 
+user=> (def b 5
+)
+#'user/b
+user=> b
+5
+user=> (def a 5)
+#'user/a
+(def a 4)
+#'user/a
+user=> 
+(+ (cond (and (odd? a) (> a 3)) a
+                (< a 2) (* 10 a)
+                :else (* a a))   a) 
+
+20
+user=> user=> (> a 3)
+true
+user=> cond (and (odd? a) (> a 3)
+true

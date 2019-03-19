@@ -1,0 +1,185 @@
+Script started on Tue 11 Oct 2016 09:05:46 PM CDT
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ ./labs./labu./labd./labo./lab ./lab[C[C[C[C[C01 
+[sudo] password for ejb: 
+$ ls
+CSCI4061Lab01v7.c  lab01  old  readme.txt  scriptoutput.txt  test.sh
+$ pwd
+/home/ejb/CSCI4061
+$ ls &
+$ 
+CSCI4061Lab01v7.c  lab01  old  readme.txt  scriptoutput.txt  test.sh
+pwd &
+$ 
+/home/ejb/CSCI4061
+
+$ asdfasdf
+$ Command not found
+asdfasdfafsd&
+$ Command not found
+asdfasdfasfd &
+$ 
+Command not found
+timerprint hello 12
+$ Command not found
+timerPrint hello 12
+$ 
+timerPrint usage: timerPrint <seconds> <String To Print>
+timerPrint 12    2 hello       9 hello
+$ 
+hello 
+timerprint 9 hello
+$ Command not found
+timerPrint 9 hello
+$ 
+timerPrint 2 hello
+$ 
+hello 
+hello 
+
+$ timerPrint 2 Hello &
+$ 
+
+$ Hello 
+timerPrint 9 Hello9 &
+$ 
+ls
+$ CSCI4061Lab01v7.c  lab01  old  readme.txt  scriptoutput.txt  test.sh
+pdw  wd
+$ /home/ejb/CSCI4061
+
+$ 
+$ Hello9 
+
+$ 
+$ ip link
+$ 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 00:0c:29:77:37:4a brd ff:ff:ff:ff:ff:ff
+Clone CLONE_NEWNET
+
+
+
+# ip link
+1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+# quit
+sh: 2: quit: not found
+# exit
+sh: 3: Cannot set tty process group (No such process)
+$ 
+[1]+  Stopped                 sudo ./lab01
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ sudo ./lab01 
+$ Clone Cl LONE_NEWNS
+
+
+
+# ps
+  PID TTY          TIME CMD
+ 4523 pts/17   00:00:00 sudo
+ 4524 pts/17   00:00:00 lab01
+ 4549 pts/17   00:00:00 lab01 <defunct>
+ 4552 pts/17   00:00:00 lab01 <defunct>
+ 4553 pts/17   00:00:00 lab01 <defunct>
+ 4554 pts/17   00:00:00 lab01 <defunct>
+ 4557 pts/17   00:00:00 lab01 <defunct>
+ 4558 pts/17   00:00:00 lab01 <defunct>
+ 4559 pts/17   00:00:00 ls <defunct>
+ 4560 pts/17   00:00:00 pwd <defunct>
+ 4561 pts/17   00:00:00 ip <defunct>
+ 4570 pts/17   00:00:00 sudo
+ 4571 pts/17   00:00:00 lab01
+ 4577 pts/17   00:00:00 lab01
+ 4578 pts/17   00:00:00 sh
+ 4579 pts/17   00:00:00 sh
+ 4580 pts/17   00:00:00 ps
+# exit
+sh: 2: Cannot set tty process group (No such process)
+$ 
+[2]+  Stopped                 sudo ./lab01
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ sudo ./lab01 
+$ ps
+  PID TTY          TIME CMD
+ 4523 pts/17   00:00:00 sudo
+ 4524 pts/17   00:00:00 lab01
+ 4549 pts/17   00:00:00 lab01 <defunct>
+ 4552 pts/17   00:00:00 lab01 <defunct>
+ 4553 pts/17   00:00:00 lab01 <defunct>
+ 4554 pts/17   00:00:00 lab01 <defunct>
+ 4557 pts/17   00:00:00 lab01 <defunct>
+ 4558 pts/17   00:00:00 lab01 <defunct>
+ 4559 pts/17   00:00:00 ls <defunct>
+ 4560 pts/17   00:00:00 pwd <defunct>
+ 4561 pts/17   00:00:00 ip <defunct>
+ 4570 pts/17   00:00:00 sudo
+ 4571 pts/17   00:00:00 lab01
+ 4584 pts/17   00:00:00 sudo
+ 4585 pts/17   00:00:00 lab01
+ 4586 pts/17   00:00:00 ps
+$ read    ps
+  PID TTY          TIME CMD
+ 4523 pts/17   00:00:00 sudo
+ 4524 pts/17   00:00:00 lab01
+ 4549 pts/17   00:00:00 lab01 <defunct>
+ 4552 pts/17   00:00:00 lab01 <defunct>
+ 4553 pts/17   00:00:00 lab01 <defunct>
+ 4554 pts/17   00:00:00 lab01 <defunct>
+ 4557 pts/17   00:00:00 lab01 <defunct>
+ 4558 pts/17   00:00:00 lab01 <defunct>
+ 4559 pts/17   00:00:00 ls <defunct>
+ 4560 pts/17   00:00:00 pwd <defunct>
+ 4561 pts/17   00:00:00 ip <defunct>
+ 4570 pts/17   00:00:00 sudo
+ 4571 pts/17   00:00:00 lab01
+ 4584 pts/17   00:00:00 sudo
+ 4585 pts/17   00:00:00 lab01
+ 4590 pts/17   00:00:00 ps
+$ readlinn        / readlink /proc/4585/ns/mnt
+mnt:[4026531840]
+$ Clone CLONE_NEWNE S
+
+
+
+# ps
+  PID TTY          TIME CMD
+ 4523 pts/17   00:00:00 sudo
+ 4524 pts/17   00:00:00 lab01
+ 4549 pts/17   00:00:00 lab01 <defunct>
+ 4552 pts/17   00:00:00 lab01 <defunct>
+ 4553 pts/17   00:00:00 lab01 <defunct>
+ 4554 pts/17   00:00:00 lab01 <defunct>
+ 4557 pts/17   00:00:00 lab01 <defunct>
+ 4558 pts/17   00:00:00 lab01 <defunct>
+ 4559 pts/17   00:00:00 ls <defunct>
+ 4560 pts/17   00:00:00 pwd <defunct>
+ 4561 pts/17   00:00:00 ip <defunct>
+ 4570 pts/17   00:00:00 sudo
+ 4571 pts/17   00:00:00 lab01
+ 4584 pts/17   00:00:00 sudo
+ 4585 pts/17   00:00:00 lab01
+ 4592 pts/17   00:00:00 lab01
+ 4593 pts/17   00:00:00 sh
+ 4594 pts/17   00:00:00 sh
+ 4596 pts/17   00:00:00 ps
+# readlink /proc/^C
+# readlink /proc/4594/ns. /mnt
+mnt:[4026532472]
+# exit
+sh: 3: Cannot set tty process group (No such process)
+$ 
+[3]+  Stopped                 sudo ./lab01
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ quit
+No command 'quit' found, did you mean:
+ Command 'quiz' from package 'bsdgames' (universe)
+ Command 'luit' from package 'x11-utils' (main)
+ Command 'quot' from package 'quota' (main)
+ Command 'qgit' from package 'qgit' (universe)
+ Command 'quilt' from package 'quilt' (universe)
+quit: command not found
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ exit
+exit
+There are stopped jobs.
+]0;ejb@ubuntu: ~/CSCI4061[01;32mejb@ubuntu[00m:[01;34m~/CSCI4061[00m$ exit
+exit
+
+Script done on Tue 11 Oct 2016 09:13:16 PM CDT

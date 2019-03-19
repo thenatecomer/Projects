@@ -1,0 +1,68 @@
+# Nathan Comer
+# ID: 5119060
+
+.pos 0
+init:   
+        irmovq Stack,%rsp
+        rrmovq %rsp,%rbp
+        pushq %rdx
+        call Main
+        halt
+
+
+        .align 4
+ele1:
+        .quad 0x00a
+        .quad ele2
+ele2:
+        .quad 0x0b0
+        .quad ele3
+ele3:
+        .quad 0xc00
+        .quad 0
+
+
+Main:   
+        pushq %rbp
+        irmovl $0x10, %rdi         	# Value to increment addresses of 8 bytes for list nodes
+	irmovl ele1, %rbx       	# Save start memory address
+listPusher: mrmovq 0(%rbx), %rax       	# Save node value
+    	pushq %rax                      # Push the value
+    	mrmovq 8(%rbx), %rax            # Save the next address
+    	pushq %rax                      # Push the next address
+    	addq %rdi, %rbx                 # Move forward the address reference
+    	andq %rax, %rax                 # Check if address is 0
+    	jne listPusher                  # Repeat if address != 0
+	call max_list
+	popq %rbp
+	ret
+
+
+max_list:
+	pushq %rbp  #save stack frame address
+	pushq %rdx	#save register value
+	#rrmovq %rsp, %rbp
+	irmovq $0x8000000000000000, %rdx #rdx max element -  set to smallest possible value
+	irmovl $0x10, %rdi         	# Value to increment addresses of 16 bytes for list nodes
+	irmovl ele1, %rbx       	# Save start memory address
+listPusher: mrmovq 0(%rbx), %rax       	# Save node value
+    	pushq %rax                      # 
+	subq %rax, %rbx			# Compare the current greatest value to the current node
+	popq %rax			#
+	cmovg %rax, %rbx		# if the current node > current greatest
+    	mrmovq 8(%rbx), %rax            # Save the next address
+    	addq %rdi, %rbx                 # Move forward the address reference
+    	andq %rax, %rax                 # Check if address is 0
+    	jne listPusher                  # Repeat if address != 0
+	popq %rdx
+	popq %rbp
+	ret
+
+
+End:
+	irmovq $8, %rbx
+	addq	%rbx, %rsp
+	popq %rbx
+	ret
+
+

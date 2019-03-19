@@ -1,0 +1,10 @@
+Nathan Comer
+CSCI 4511w
+Search Assignment
+
+Incomplete parts: None
+Known bugs: None
+Example of a state in my implementation:
+[[1, 5, 6, 2, 4, 0], [2, 4, 3, 1, 5, 6], [4, 1, 2, 5, 0, 3], [0, 0, 0, 6, 0, 4], [6, 3, 5, 0, 2, 0], [0, 2, 0, 0, 3, 1]]
+Pruning: I prunned all nodes that would place a value in a square illegally (in the same row, column, or inner square as the same value).
+Modifications to BFS: None, only implemented DFS in the file.

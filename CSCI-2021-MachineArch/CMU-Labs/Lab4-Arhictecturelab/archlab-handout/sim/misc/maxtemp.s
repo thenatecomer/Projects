@@ -1,0 +1,1 @@
+	.file	"maxtemp.c"

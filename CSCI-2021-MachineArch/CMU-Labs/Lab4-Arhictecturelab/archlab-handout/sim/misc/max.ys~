@@ -1,0 +1,57 @@
+# Nathan Comer
+# ID: 5119060
+
+.pos 0
+init:   
+        irmovq Stack, %rsp	#Set up stack frame
+        rrmovq %rsp, %rbp
+        call Main
+        halt
+
+
+        .align 4
+ele1:
+        .quad 0x00a
+        .quad ele2
+ele2:
+        .quad 0x0b0
+        .quad ele3
+ele3:
+        .quad 0xc00
+        .quad ele4
+ele4:
+	.quad 0x00c
+	.quad 0
+
+Main:   
+        pushq %rbp
+        rrmovq %rsp,%rbp
+	irmovq ele1, %rdi
+	call max_list
+	rrmovq %rbp, %rsp
+	popq %rbp
+	ret
+
+max_list:
+	pushq %r10		#save register value
+	mrmovq (%rdi), %rax	#set initial max value
+	jmp notg
+Loop:	mrmovq (%rdi), %rcx	#nodes
+	rrmovq %rax, %r10
+	subq %rcx, %r10		#compare current node value to greatest value
+	andq %r10, %r10
+	jge notg		#jump if current node < greatest value
+	rrmovq %rcx, %rax	#mov current node's value to greatest
+
+notg:	mrmovq 0x8(%rdi), %rdi 	#mov to next node
+	andq %rdi, %rdi 	#if address in node points 0 than end
+	je End
+	jmp Loop
+
+End:	popq %r10		#restore register value
+	ret
+	
+	.pos 0x200
+Stack:
+
+

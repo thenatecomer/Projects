@@ -1,0 +1,17 @@
+struct ELE {
+    long val;
+    struct ELE *next;
+} *list_ptr;
+
+
+long max_list(list_ptr ls)
+{
+    long max_element = 0;
+    while (ls) {
+        if(ls->val > max_element) {
+            max_element = ls->val;
+        }
+        ls = ls->next;
+    }
+    return max_element;
+}

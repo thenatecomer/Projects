@@ -1,0 +1,156 @@
+                            | # Initial code
+0x000: 30f40004000000000000 |         irmovq stack,%rsp
+0x00a: 30f70500000000000000 |         irmovq $5,%rdi
+0x014: 30f64000000000000000 |         irmovq A,%rsi
+0x01e: 30f20801000000000000 |         irmovq B,%rdx
+0x028: 30f1d001000000000000 |         irmovq C,%rcx
+0x032: 809802000000000000   |         call matrix_and_xor
+0x03b: 00                   |         halt
+                            | 
+0x040:                      | .align 8
+                            | # Matrix A
+0x040:                      | A:
+0x040: 0100000000000000     |         .quad 0x001
+0x048: 0200000000000000     |         .quad 0x002
+0x050: 0300000000000000     |         .quad 0x003
+0x058: 0400000000000000     |         .quad 0x004
+0x060: 0500000000000000     |         .quad 0x005
+0x068: 0600000000000000     |         .quad 0x006
+0x070: 0700000000000000     |         .quad 0x007
+0x078: 0800000000000000     |         .quad 0x008
+0x080: 0900000000000000     |         .quad 0x009
+0x088: 0100000000000000     |         .quad 0x001
+0x090: 0200000000000000     |         .quad 0x002
+0x098: 0300000000000000     |         .quad 0x003
+0x0a0: 0400000000000000     |         .quad 0x004
+0x0a8: 0500000000000000     |         .quad 0x005
+0x0b0: 0600000000000000     |         .quad 0x006
+0x0b8: 0700000000000000     |         .quad 0x007
+0x0c0: 0800000000000000     |         .quad 0x008
+0x0c8: 0900000000000000     |         .quad 0x009
+0x0d0: 0100000000000000     |         .quad 0x001
+0x0d8: 0200000000000000     |         .quad 0x002
+0x0e0: 0300000000000000     |         .quad 0x003
+0x0e8: 0400000000000000     |         .quad 0x004
+0x0f0: 0500000000000000     |         .quad 0x005
+0x0f8: 0600000000000000     |         .quad 0x006
+0x100: 0700000000000000     |         .quad 0x007
+                            | 
+                            | # Matrix B 
+0x108:                      | B:
+0x108: 0100000000000000     |         .quad 0x001
+0x110: 0200000000000000     |         .quad 0x002
+0x118: 0300000000000000     |         .quad 0x003
+0x120: 0400000000000000     |         .quad 0x004
+0x128: 0500000000000000     |         .quad 0x005
+0x130: 0600000000000000     |         .quad 0x006
+0x138: 0700000000000000     |         .quad 0x007
+0x140: 0800000000000000     |         .quad 0x008
+0x148: 0900000000000000     |         .quad 0x009
+0x150: 0100000000000000     |         .quad 0x001
+0x158: 0200000000000000     |         .quad 0x002
+0x160: 0300000000000000     |         .quad 0x003
+0x168: 0400000000000000     |         .quad 0x004
+0x170: 0500000000000000     |         .quad 0x005
+0x178: 0600000000000000     |         .quad 0x006
+0x180: 0700000000000000     |         .quad 0x007
+0x188: 0800000000000000     |         .quad 0x008
+0x190: 0900000000000000     |         .quad 0x009
+0x198: 0700000000000000     |         .quad 0x007
+0x1a0: 0600000000000000     |         .quad 0x006
+0x1a8: 0500000000000000     |         .quad 0x005
+0x1b0: 0400000000000000     |         .quad 0x004
+0x1b8: 0300000000000000     |         .quad 0x003
+0x1c0: 0200000000000000     |         .quad 0x002
+0x1c8: 0100000000000000     |         .quad 0x001
+                            | 
+                            | # Matrix C 
+0x1d0:                      | C:
+0x1d0: 0000000000000000     |         .quad 0x000
+0x1d8: 0000000000000000     |         .quad 0x000
+0x1e0: 0000000000000000     |         .quad 0x000
+0x1e8: 0000000000000000     |         .quad 0x000
+0x1f0: 0000000000000000     |         .quad 0x000
+0x1f8: 0000000000000000     |         .quad 0x000
+0x200: 0000000000000000     |         .quad 0x000
+0x208: 0000000000000000     |         .quad 0x000
+0x210: 0000000000000000     |         .quad 0x000
+0x218: 0000000000000000     |         .quad 0x000
+0x220: 0000000000000000     |         .quad 0x000
+0x228: 0000000000000000     |         .quad 0x000
+0x230: 0000000000000000     |         .quad 0x000
+0x238: 0000000000000000     |         .quad 0x000
+0x240: 0000000000000000     |         .quad 0x000
+0x248: 0000000000000000     |         .quad 0x000
+0x250: 0000000000000000     |         .quad 0x000
+0x258: 0000000000000000     |         .quad 0x000
+0x260: 0000000000000000     |         .quad 0x000
+0x268: 0000000000000000     |         .quad 0x000
+0x270: 0000000000000000     |         .quad 0x000
+0x278: 0000000000000000     |         .quad 0x000
+0x280: 0000000000000000     |         .quad 0x000
+0x288: 0000000000000000     |         .quad 0x000
+0x290: 0000000000000000     |         .quad 0x000
+                            | 
+                            | 
+                            | 
+0x298:                      | matrix_and_xor:
+                            | 
+                            | /* Version B */
+                            | 	
+0x298: a05f                 | 	pushq %rbp
+0x29a: 2045                 | 	rrmovq %rsp, %rbp
+0x29c: a0df                 | 	pushq %r13		#Save register values (saved all not just callee)
+0x29e: a0cf                 | 	pushq %r12
+0x2a0: a03f                 | 	pushq %rbx
+                            | 
+0x2a2: 6300                 | 	xorq %rax, %rax		#set return value to zero
+0x2a4: 6388                 | 	xorq %r8, %r8 		#set r8 (Y count) to zero
+0x2a6: 6399                 | 	xorq %r9, %r9		#set r9 (address incrementer) to zero
+0x2a8: 30f30100000000000000 | LoopY:	irmovq $0x1, %rbx
+0x2b2: 6038                 | 	addq %rbx, %r8		#Y count++
+                            | 
+0x2b4: 63aa                 | 	xorq %r10, %r10		#set r10 (X count) to zero
+0x2b6: 30f30100000000000000 | LoopX:	irmovq $0x1, %rbx	
+0x2c0: 603a                 | 	addq %rbx, %r10		#X count++
+                            | 	
+                            | 	
+0x2c2: 206b                 | 	rrmovq %rsi, %r11	#get starting address for matrix A (%rsi)
+0x2c4: 609b                 | 	addq %r9, %r11		#add current offset to the starting address
+0x2c6: 50bb0000000000000000 | 	mrmovq (%r11), %r11	#get the value from address
+                            | 	
+0x2d0: 202c                 | 	rrmovq %rdx, %r12	#get starting address for matrix B (%rdx)
+0x2d2: 609c                 | 	addq %r9, %r12		#add current offset to the starting address
+0x2d4: 50cc0000000000000000 | 	mrmovq (%r12), %r12	#get the value from address
+                            | 	
+0x2de: 201d                 | 	rrmovq %rcx, %r13	#get starting address for matrix C (%rcx)
+0x2e0: 609d                 | 	addq %r9, %r13		#add current offset to the starting address
+                            | 
+0x2e2: 62bc                 | 	andq %r11, %r12		#AND the corresponding elements from matrices A and B
+0x2e4: 40cd0000000000000000 | 	rmmovq %r12, (%r13)	#move the value into matrix C
+                            | 
+0x2ee: 63c0                 | 	xorq %r12, %rax		#Xor the elements of matrix C together
+                            | 	
+0x2f0: 30f30800000000000000 | 	irmovq $0x8, %rbx
+0x2fa: 6039                 | 	addq %rbx, %r9		#increment address
+                            | 
+0x2fc: 20ae                 | 	rrmovq %r10, %r14	#Use %r14 as a temporary value
+0x2fe: 617e                 | 	subq %rdi, %r14 	#Check to see if X count < size 
+0x300: 72b602000000000000   | 	jl LoopX		#Jump to LoopX as long as X < size
+                            | 
+0x309: 208e                 | 	rrmovq %r8, %r14	#Use %r14 as a temporary value
+0x30b: 617e                 | 	subq %rdi, %r14		#Check to see if Y count < size
+0x30d: 72a802000000000000   | 	jl LoopY		#Jump to LoopY as long as Y < size
+                            | 
+0x316:                      | End:	
+0x316: b03f                 | 	popq %rbx	#restore register values
+0x318: b0cf                 | 	popq %r12
+0x31a: b0df                 | 	popq %r13
+0x31c: 2054                 | 	rrmovq %rbp, %rsp
+0x31e: b05f                 | 	popq %rbp
+0x320: 90                   | 	ret
+                            | 
+                            | 
+0x400:                      | 	.pos 0x400
+0x400:                      | stack:
+                            | 
