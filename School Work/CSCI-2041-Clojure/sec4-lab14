@@ -1,0 +1,24 @@
+(defn factorial-using-apply-range [n]
+	(let [parts (partition-all n (range 1 (inc n)))
+	      sub-factorial-fn #(apply * %)]
+  (reduce * (pmap sub-factorial-fn parts))))
+
+(use 'clojure.java.io)
+(def mytext (slurp "test.txt"))
+(def partitioned (map (fn [n] (str (first n))) (partition-by \newline mytext)))
+
+(defn findDatesTest []
+	(let [m '()]
+	(pmap (fn [n] (concat m (re-seq #"\d{2}/\d{2}/\d{4}" n))) partitioned)
+	m))
+
+
+(def myNASA (slurp "NASA_access_log_Jul95_short"))
+(def partitionedNASA (map (fn [n] (str (first n))) (partition-by \newline myNASA)))
+
+(defn findDatesNASA []
+	(let [m '()]
+	(pmap (fn [n] (concat m (re-seq #"\d{2}/\d{2}/\d{4}" n))) partitionedNASA)
+	m))
+
+
